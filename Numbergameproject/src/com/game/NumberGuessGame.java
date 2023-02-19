@@ -1,17 +1,20 @@
 package com.game;
 
 import java.util.InputMismatchException;
+
 import java.util.Scanner;
 
 public class NumberGuessGame {
+
+	static int number = (int) (1 + (100 * Math.random()));
+
+	// public static void main(String[] args) {
 
 	public static void game() {
 
 		Scanner sc = new Scanner(System.in);
 
 		int k = 5;
-
-		int number = (int) (1 + (100 * Math.random()));
 
 		System.out.print("Give a number from 1 to 100" + '\n' + "You have 5 chances to guess" + '\n');
 
@@ -39,33 +42,26 @@ public class NumberGuessGame {
 
 				if (j == 4) {
 
-					System.out.println("If you want hint please choose hint(for hint press the 1) or else");
+					System.out.println(
+							"If you want hint please choose hint(for hint press the '1') or else to continue '0'");
 
 					int hint = sc.nextInt();
 
 					if (hint == 1) {
 
-						System.out.println("For easy guess prees 3" + '\n' + "For Medium guess press 2");
+						System.out.println("For Easy Guess Press `1` or For Hard Guess Press `2`");
 
-						int hint2 = sc.nextInt();
+						int num = sc.nextInt();
 
-						if (hint2 == 2) {
+						switch (num) {
 
-							int off = number / 2;
+						case 1:
+							offmethod();
+							break;
 
-							System.out.println("This is the hint of your number" + off);
-							continue;
-						}
-						
-						
-
-						int hint3 = sc.nextInt();
-
-						if (hint3 == 3) {
-
-							int ans = number + 2;
-
-							System.out.println("This is nearest number of guess number " + ans);
+						case 2:
+							nearNumber();
+							break;
 						}
 
 					}
@@ -74,6 +70,7 @@ public class NumberGuessGame {
 
 				if (j == k) {
 					System.out.println("Sorry You Loose the game..!! Try again.");
+					System.out.println("The number is " + number);
 				}
 
 			}
@@ -84,7 +81,21 @@ public class NumberGuessGame {
 			game();
 		}
 
-		System.out.println("The number is " + number);
+	}
+
+	public static void offmethod() {
+
+		double off = (double) number / 2;
+
+		System.out.println("this is the number " + off);
+
+	}
+
+	public static void nearNumber() {
+
+		int ans = number + 2;
+
+		System.out.println("this is the near number " + ans);
 
 	}
 
